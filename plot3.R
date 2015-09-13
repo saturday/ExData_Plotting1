@@ -14,6 +14,9 @@ df$DateTime <- as.POSIXct(strptime(df$DateTime,format="%d/%m/%Y %T"))
 # Subset using the dplyr library.
 dfSubset <- filter(df, df$DateTime > as.POSIXct("2007-02-01 00:00:00"), df$DateTime < as.POSIXct("2007-02-03 00:00:00"))
 
+# Create the PNG
+png("plot3.png")  
+
 # Generate the plot, annotate and stylize.
 plot(dfSubset$DateTime, dfSubset$Sub_metering_1, type="l", xlab = "", ylab = "Energy sub metering")
 
@@ -25,6 +28,4 @@ legend( x='topright', bty='l',
         legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
         lwd=1, lty=c(1,1,1), col = c("black", "red", "blue"))
 
-# Save to a PNG file.
-dev.copy(png,'plot3.png')
 dev.off()

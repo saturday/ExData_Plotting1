@@ -14,6 +14,9 @@ df$DateTime <- as.POSIXct(strptime(df$DateTime,format="%d/%m/%Y %T"))
 # Subset using the dplyr library.
 dfSubset <- filter(df, df$DateTime > as.POSIXct("2007-02-01 00:00:00"), df$DateTime < as.POSIXct("2007-02-03 00:00:00"))
 
+# Create the PNG
+png("plot4.png") 
+
 # Set up the screen device grid.
 par(mfrow = c(2,2))
 
@@ -37,6 +40,4 @@ legend( x='topright', bty='l',
 # Plot global reactive power.
 plot(dfSubset$DateTime, dfSubset$Global_reactive_power, type="l", xlab = "", ylab = "Global_reactive_power")
 
-# Save to a PNG file.
-dev.copy(png,'plot4.png')
 dev.off()

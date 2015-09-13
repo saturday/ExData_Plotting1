@@ -14,12 +14,13 @@ df$DateTime <- as.POSIXct(strptime(df$DateTime,format="%d/%m/%Y %T"))
 # Subset using the dplyr library.
 dfSubset <- filter(df, df$DateTime > as.POSIXct("2007-02-01 00:00:00"), df$DateTime < as.POSIXct("2007-02-03 00:00:00"))
 
+# Create the PNG
+png("plot1.png") 
+
 # Convert the global active power column so we can use it in a histogram.
 vectorGap <- as.numeric(as.vector(dfSubset$Global_active_power))
 
 # Create the histogram, annotate and stylize.
 hist(vectorGap, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)")
 
-# Save to a PNG file.
-dev.copy(png,'plot1.png')
 dev.off()
